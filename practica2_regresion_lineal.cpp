@@ -1,9 +1,3 @@
-/*
- * Universidad EAFIT - Escuela de Ciencias Aplicadas e Ingeniería
- * Ingeniería de Sistemas - Lenguajes y Paradigmas de Programación
- * Práctica No. 2: Programación Orientada a Objetos (Regresión Lineal Múltiple y Análisis de Memoria)
- */
-
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -14,9 +8,6 @@
 
 using namespace std;
 
-// ============================================================================
-// CLASE PRINCIPAL: LinearRegression
-// ============================================================================
 class LinearRegression {
 private:
     vector<double> weights; // Arreglo con los pesos del modelo (w1, w2, ..., wn)
@@ -33,10 +24,6 @@ public:
         weights.resize(num_variables, 0.0);
         bias = 0.0;
     }
-
-    // ------------------------------------------------------------------------
-    // MÉTODOS AUXILIARES DE CÁLCULO ESTADÍSTICO (Sin librerías externas)
-    // ------------------------------------------------------------------------
 
     // Calcula la media aritmética (promedio) de un vector de datos
     double calcular_media(const vector<double>& datos) {
@@ -60,10 +47,6 @@ public:
         if (desviacion == 0.0) return 1.0; // Evita división por cero
         return desviacion;
     }
-
-    // ------------------------------------------------------------------------
-    // MÉTODOS AUXILIARES DE PROCESAMIENTO DE MATRICES (Sin librerías externas)
-    // ------------------------------------------------------------------------
 
     // Calcula la matriz transpuesta de una matriz dada (filas pasan a columnas)
     vector<vector<double>> transponer_matriz(const vector<vector<double>>& matriz) {
@@ -96,10 +79,6 @@ public:
         }
         return resultado;
     }
-
-    // ------------------------------------------------------------------------
-    // MÉTODOS PRINCIPALES REQUERIDOS EN LA PRÁCTICA
-    // ------------------------------------------------------------------------
 
     // data_scaling(): Escala los valores del dataset usando estandarización (Z-score)
     void data_scaling(vector<vector<double>>& X) {
@@ -206,14 +185,9 @@ public:
     }
 };
 
-// ============================================================================
-// OBJETO EN MEMORIA GLOBAL (Para la sección 3.2 de Análisis de Memoria)
-// ============================================================================
+
 LinearRegression modelo_global;
 
-// ============================================================================
-// FUNCIONES AUXILIARES PARA LECTURA DE ARCHIVOS CSV Y DIVISIÓN DE DATOS
-// ============================================================================
 bool cargar_csv(const string& ruta_archivo, vector<vector<double>>& X, vector<double>& y) {
     ifstream archivo(ruta_archivo);
     if (!archivo.is_open()) {
@@ -288,17 +262,13 @@ void imprimir_pesos(const vector<double>& pesos) {
     cout << " ]";
 }
 
-// ============================================================================
+
 // FUNCIÓN PRINCIPAL (main)
-// ============================================================================
 int main() {
     cout << "======================================================================" << endl;
     cout << "  PRACTICA 2: PROGRAMACION ORIENTADA A OBJETOS - REGRESION LINEAL" << endl;
     cout << "======================================================================" << endl;
 
-    // ------------------------------------------------------------------------
-    // PRUEBA 1: REGRESIÓN LINEAL SIMPLE (ice_cream_selling_data.csv)
-    // ------------------------------------------------------------------------
     cout << "\n--- 1. REGRESION LINEAL SIMPLE (ice_cream_selling_data.csv) ---" << endl;
     vector<vector<double>> X_helados, X_train_h, X_test_h;
     vector<double> y_helados, y_train_h, y_test_h;
@@ -337,9 +307,6 @@ int main() {
 
     delete slr;
 
-    // ------------------------------------------------------------------------
-    // PRUEBA 2: REGRESIÓN LINEAL MÚLTIPLE (student_exam_scores.csv)
-    // ------------------------------------------------------------------------
     cout << "\n--- 2. REGRESION LINEAL MULTIPLE (student_exam_scores.csv) ---" << endl;
     vector<vector<double>> X_estudiantes, X_train_e, X_test_e;
     vector<double> y_estudiantes, y_train_e, y_test_e;
@@ -377,9 +344,7 @@ int main() {
     cout << "score (MSE en entrenamiento): " << fixed << setprecision(6) << mlr->score(y_train_e, mlr->predict(X_train_e)) << endl;
     cout << "Coeficiente R^2 en entrenamiento: " << fixed << setprecision(6) << mlr->calcular_r2(y_train_e, mlr->predict(X_train_e)) << endl;
 
-    // ------------------------------------------------------------------------
-    // SECCIÓN 3.2: ANÁLISIS DE MEMORIA (Global, Local, Dinámica y Vector Dinámico)
-    // ------------------------------------------------------------------------
+
     cout << "\n======================================================================" << endl;
     cout << "  3.2 ANALISIS DE MEMORIA (GLOBAL, LOCAL, DINAMICA Y VECTOR DINAMICO)" << endl;
     cout << "======================================================================" << endl;
