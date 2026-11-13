@@ -15,7 +15,7 @@
 using namespace std;
 
 
-
+// Clase Principal: LinearRegression
 
 class LinearRegression {
 private:
@@ -35,7 +35,7 @@ public:
     }
 
 
-
+    // Métodos auxiliares de cálculo estadístico
 
 
     // Calcula la media aritmética (promedio) de un vector de datos
@@ -61,9 +61,9 @@ public:
         return desviacion;
     }
 
-
-
-
+    
+    // Métodos auxiliares de procesamiento de matrices
+    
 
     // Calcula la matriz transpuesta de una matriz dada (filas pasan a columnas)
     vector<vector<double>> transponer_matriz(const vector<vector<double>>& matriz) {
@@ -98,8 +98,8 @@ public:
     }
 
     
-
-
+    // Métodos principales 
+    
 
     // data_scaling(): Escala los valores del dataset usando estandarización (Z-score)
     void data_scaling(vector<vector<double>>& X) {
@@ -207,12 +207,12 @@ public:
 };
 
 
-
+// Objeto en memoria global
 
 LinearRegression modelo_global;
 
 
-
+// Funciones auxiliares para lectura de archivos CSV
 
 bool cargar_csv(const string& ruta_archivo, vector<vector<double>>& X, vector<double>& y) {
     ifstream archivo(ruta_archivo);
@@ -296,8 +296,8 @@ int main() {
     cout << "  PRACTICA 2: PROGRAMACION ORIENTADA A OBJETOS - REGRESION LINEAL" << endl;
     cout << "======================================================================" << endl;
 
-   
-
+    
+    // PRUEBA 1: Regresión lineal simple (ice_cream_selling_data.csv)
     
     cout << "\n--- 1. REGRESION LINEAL SIMPLE (ice_cream_selling_data.csv) ---" << endl;
     vector<vector<double>> X_helados, X_train_h, X_test_h;
@@ -338,7 +338,7 @@ int main() {
     delete slr;
 
     
-
+    // PRUEBA 2: Regresión lineal múltiple (student_exam_scores.csv)
     
     cout << "\n--- 2. REGRESION LINEAL MULTIPLE (student_exam_scores.csv) ---" << endl;
     vector<vector<double>> X_estudiantes, X_train_e, X_test_e;
@@ -378,7 +378,7 @@ int main() {
     cout << "Coeficiente R^2 en entrenamiento: " << fixed << setprecision(6) << mlr->calcular_r2(y_train_e, mlr->predict(X_train_e)) << endl;
 
     
-
+    // SECCIÓN 3.2: Análisis de memoria (Global, Local, Dinámica y Vector Dinámico)
     
     cout << "\n======================================================================" << endl;
     cout << "  3.2 ANALISIS DE MEMORIA (GLOBAL, LOCAL, DINAMICA Y VECTOR DINAMICO)" << endl;
